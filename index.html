@@ -1,25 +1,20 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Redirecionando...</title>
-    <script>
-      // Lê o parâmetro "code" da URL
-      const url = new URL(window.location.href);
-      const code = url.searchParams.get("code");
-      const error = url.searchParams.get("error");
-
+<head>
+  <title>Redirecionando para o app...</title>
+  <script>
+    (function() {
+      const params = new URLSearchParams(window.location.search);
+      const code = params.get("code");
       if (code) {
-        // Redireciona pro app com o código
         window.location.href = `meuapp://auth/success?code=${code}`;
-      } else if (error) {
-        window.location.href = `meuapp://auth/failure?error=${error}`;
       } else {
-        document.body.innerText = "Erro: código não encontrado.";
+        window.location.href = `meuapp://auth/failure`;
       }
-    </script>
-  </head>
-  <body>
-    Redirecionando para o aplicativo...
-  </body>
+    })();
+  </script>
+</head>
+<body>
+  <p>Redirecionando para o aplicativo...</p>
+</body>
 </html>
